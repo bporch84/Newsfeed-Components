@@ -190,16 +190,21 @@ const data = [
     const expandButton = document.querySelector(".expandButton");
     //I created a variable for the class in the span.
     span.addEventListener("click", () => div.classList.toggle("article-open"));
-    // I added an event listened to toggle the class when the span plus sign is clicked, but it doesn't work.
+    // I added an event listened to toggle the class when the span plus sign is clicked.
     return div
   }
 
   const mainDiv = document.querySelector("div.articles")
 
-  for(let i = 0; i < data.length; i++){
-    const article = articleMaker(data[i]);
+  // for(let i = 0; i < data.length; i++){
+  //   const article = articleMaker(data[i]);
+  //   mainDiv.appendChild(article)
+  // }
+
+  data.forEach((item) => {
+    const article = articleMaker(item);
     mainDiv.appendChild(article)
-  }
+  })
 
 /*
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
