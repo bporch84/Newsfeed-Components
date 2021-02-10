@@ -86,6 +86,49 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'Barbie Girl',
+    date: 'May 14th, 1997',
+    firstParagraph: `I'm a blonde bimbo girl, in a fantasy world
+    Dress me up, make it tight, I'm your dolly
+    You're my doll, rock and roll, feel the glamour in pink
+    Kiss me here, touch me there hank pank
+    You can touch, you can play
+    If you say "I'm always yours"
+    Uu-oooh-u`,
+
+    secondParagraph: `Make me walk, make me talk, do whatever you please
+    I can act like a star, I can beg on my knees
+    Come jump in, bimbo friend, let us do it again,
+    Hit the town, fool around, let's go party
+    
+    You can touch, you can play
+    If you say "I'm always yours"
+    You can touch, you can play
+    If you say "I'm always yours"`,
+
+    thirdParagraph: `I'm a Barbie girl, in the Barbie world
+    Life in plastic, it's fantastic
+    You can brush my hair, undress me everywhere
+    Imagination, life is your creation
+    
+    I'm a Barbie girl, in the Barbie world
+    Life in plastic, it's fantastic
+    You can brush my hair, undress me everywhere
+    Imagination, life is your creation
+    
+    Come on, Barbie, let's go party!
+    Ah ah ah yeah
+    Come on, Barbie, let's go party!
+    Uu-oooh-u, uu-oooh-u
+    Come on, Barbie, let's go party!
+    Ah ah ah yeah
+    Come on, Barbie, let's go party!
+    Uu-oooh-u, uu-oooh-u
+    (Ohh I'm having so much fun)
+    (Well Barbie, we just getting started)
+    (Oh I Iove you Ken)`
   }
 ];
 
@@ -102,15 +145,70 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
+  */
 
+  // I created a function called articleMaker.
+  function articleMaker(data){
+    const div = document.createElement("div");
+    // I created a div element.
+    div.classList.add("article");
+    // I gave the div element a class called article.
+    const h2 = document.createElement("h2");
+    // I created an h2.
+    h2.textContent = data.title;
+    // I added some filler text. This will need to be text from the data array.
+    div.appendChild(h2);
+    // I appended the h2 to the div I created.
+    const date = document.createElement("p");
+    // I created a p tag for the date.
+    date.classList.add("date");
+    // I gave the p tag a class called date.
+    date.textContent = data.date;
+    // I added some filler text.
+    div.appendChild(date);
+    // I appended the date to the div.
+    const p1 = document.createElement("p");
+    // I created a p tag for the first variable
+    p1.textContent = data.firstParagraph;
+    // I added some filler text.
+    div.appendChild(p1);
+    // I appended the p tag to the div.
+    const p2 = document.createElement("p");
+    p2.textContent = data.secondParagraph;
+    div.appendChild(p2);
+    const p3 = document.createElement("p");
+    p3.textContent = data.thirdParagraph;
+    div.appendChild(p3);
+    const span = document.createElement("span");
+    // I created a span tag.
+    span.classList.add("expandButton");
+    // I gave the span tag a class called expandButton.
+    span.textContent = "+"
+    // I added the plus sign.
+    div.appendChild(span);
+    //I appended the span to the div.
+    const expandButton = document.querySelector(".expandButton");
+    //I created a variable for the class in the span.
+    span.addEventListener("click", () => div.classList.toggle("article-open"));
+    // I added an event listened to toggle the class when the span plus sign is clicked, but it doesn't work.
+    return div
+  }
+
+  const mainDiv = document.querySelector("div.articles")
+
+  for(let i = 0; i < data.length; i++){
+    const article = articleMaker(data[i]);
+    mainDiv.appendChild(article)
+  }
+
+/*
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 
   Step 3: Don't forget to return something from your function!
 
-  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component
-  to create a div.article element and append it to the DOM inside div.articles (see index.html).
+  Step 4: Outside your function now, loop over the data. At each iteration you'll use your component to create a div.article element and append it to the DOM inside div.articles (see index.html).
 
-  Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
+  Step 5: Try adding a new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
